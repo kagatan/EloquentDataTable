@@ -6,7 +6,7 @@ If you are familiar with eloquent and would like to use it in combination with [
 ## Usage
 
 ### Step 1: Install through composer
-```composer require livecontrol/eloquent-datatable```
+```composer require kagatan/eloquent-datatable```
 
 ### Step 2: Add DataTables javascript and set it up
 For more information check out the [datatables manual](http://datatables.net/manual/index).
