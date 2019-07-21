@@ -121,9 +121,9 @@ class DataTable
         }
 
         return [
-            static::$versionTransformer->transform('draw') => (isset($_POST[static::$versionTransformer->transform(
+            static::$versionTransformer->transform('draw') => (isset($_GET[static::$versionTransformer->transform(
                     'draw'
-                )]) ? (int)$_POST[static::$versionTransformer->transform('draw')] : 0),
+                )]) ? (int)$_GET[static::$versionTransformer->transform('draw')] : 0),
             static::$versionTransformer->transform('recordsTotal') => $this->total,
             static::$versionTransformer->transform('recordsFiltered') => $this->filtered,
             static::$versionTransformer->transform('data') => $rows
@@ -350,12 +350,12 @@ class DataTable
      */
     protected function addLimits()
     {
-        if (isset($_POST[static::$versionTransformer->transform(
+        if (isset($_GET[static::$versionTransformer->transform(
                     'start'
-                )]) && $_POST[static::$versionTransformer->transform('length')] != '-1'
+                )]) && $_GET[static::$versionTransformer->transform('length')] != '-1'
         ) {
-            $this->builder->skip((int)$_POST[static::$versionTransformer->transform('start')])->take(
-                (int)$_POST[static::$versionTransformer->transform('length')]
+            $this->builder->skip((int)$_GET[static::$versionTransformer->transform('start')])->take(
+                (int)$_GET[static::$versionTransformer->transform('length')]
             );
         }
     }
