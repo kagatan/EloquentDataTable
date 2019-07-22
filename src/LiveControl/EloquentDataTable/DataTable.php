@@ -97,9 +97,10 @@ class DataTable
     public function make()
     {
         $this->rawColumns = $this->getRawColumns($this->columns);
+
         $this->columnNames = $this->getColumnNames();
 
-        $this->addSelect();
+//        $this->addSelect();
 
         $this->total = $this->count();
 
@@ -115,8 +116,10 @@ class DataTable
 
         $this->rows = $this->builder->get();
 
+
         $rows = [];
         foreach ($this->rows as $row) {
+//            $rows[] = $row;
             $rows[] = $this->formatRow($row);
         }
 
@@ -160,13 +163,14 @@ class DataTable
             return call_user_func($function, $data);
         }
 
-        $result = [];
-        foreach ($this->columnNames as $column) {
-            $result[$column] = $data[$column];
-        }
-        $data = $result;
+//        $result = [];
+//        foreach ($this->columnNames as $column) {
+//            $result[$column] = $data[$column];
+//        }
+//        dump($data);
+//        $data = $result;
 
-        $data = $this->formatRowIndexes($data);
+//        $data = $this->formatRowIndexes($data);
 
         return $data;
     }
@@ -256,6 +260,7 @@ class DataTable
                 $rawSelect[] = $this->rawColumns[$index] . ' as ' . Model::resolveConnection()->getQueryGrammar()->wrap($this->columnNames[$index]);
             }
         }
+
         $this->builder = $this->builder->addSelect(new raw(implode(', ', $rawSelect)));
     }
 
@@ -335,6 +340,7 @@ class DataTable
     {
         if (static::$versionTransformer->isOrdered()) {
             foreach (static::$versionTransformer->getOrderedColumns() as $index => $direction) {
+
                 if (isset($this->columnNames[$index])) {
                     $this->builder->orderBy(
                         $this->columnNames[$index],
